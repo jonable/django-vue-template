@@ -1,0 +1,22 @@
+{% load static %}
+{% load render_bundle get_files webpack_static from webpack_loader %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>    
+		<title>Django Vue Template</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		{# chunk-vendors needs to be uncommented for production, haven't looked into how else to do this. #}
+		{# {% render_bundle 'chunk-vendors' 'css' %} #}
+		{% render_bundle 'app' 'css' %}							
+	</head>
+	<body>
+		<noscript>You need to enable JavaScript to run this app.</noscript>   
+		<div id="app" class="container-fluid">
+		</div>    
+		{% csrf_token %}
+		{# {% render_bundle 'chunk-vendors' 'js' %} #}
+		{% render_bundle 'app' 'js' %}
+		<script type="text/javascript" src="{% url 'js-error-handler-js' %}"></script>
+	</body>
+</html>
